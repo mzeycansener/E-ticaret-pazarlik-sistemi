@@ -1,0 +1,11 @@
+# Bağımlılıklar (Bunlar yüklenmemeli)
+node_modules/
+client/node_modules/
+
+# Derlenmiş dosyalar
+client/dist/
+client/build/
+
+# Çevresel Değişkenler (Şifreler)
+.env
+.DS_Store

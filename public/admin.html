@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli - Akıllı KDS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
+            <div>
+                <h1 class="text-3xl font-bold text-yellow-500">👑 Yönetici Paneli</h1>
+                <p class="text-gray-400 text-sm">Karar Destek Sistemi</p>
+            </div>
+            <button onclick="refreshData()" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded shadow transition">
+                Verileri Yenile ⟳
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold mb-4 text-gray-300">📊 Karar Dağılımı</h3>
+                <div class="h-64 flex justify-center"><canvas id="statusChart"></canvas></div>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+                <h3 class="text-lg font-semibold mb-4 text-gray-300">💰 Fiyat Analizi</h3>
+                <div class="h-64"><canvas id="moneyChart"></canvas></div>
+            </div>
+        </div>
+
+        <h2 class="text-xl font-bold mb-4 text-yellow-500">⏳ Bekleyen Pazarlık İstekleri</h2>
+        <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden mb-10">
+            <table class="w-full text-left">
+                <thead class="bg-gray-700 text-gray-300">
+                    <tr>
+                        <th class="p-4">Müşteri / Ürün</th>
+                        <th class="p-4">Orijinal Fiyat</th>
+                        <th class="p-4">Teklif</th>
+                        <th class="p-4">Tavsiye 🤖</th>
+                        <th class="p-4 text-center">Karar</th>
+                    </tr>
+                </thead>
+                <tbody id="requestTable" class="divide-y divide-gray-700 text-gray-300">
+                    <tr><td colspan="5" class="p-4 text-center">Veriler yükleniyor...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let statusChartInstance = null;
+        let moneyChartInstance = null;
+
+        refreshData();
+
+        function refreshData() {
+            console.log("Veri çekme işlemi başladı...");
+            loadAnalytics();
+        }
+
+        async function loadAnalytics() {
+            try {
+                // 1. Backend'den veriyi çeken yer
+                const response = await fetch('/api/admin/bargains');
+                if (!response.ok) throw new Error("Sunucudan veri alınamadı!");
+                
+                const requests = await response.json();
+                console.log("Gelen Veriler:", requests); // Konsolda veriyi görelim
+
+                const tableBody = document.getElementById('requestTable');
+                tableBody.innerHTML = '';
+
+                if (!requests || requests.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="5" class="p-6 text-center text-gray-500">Bekleyen teklif yok.</td></tr>';
+                } else {
+                    requests.forEach(req => {
+                        //  Veriler eksik olsa bile kod çalışsın
+                        const productName = req.products ? req.products.name : "Ürün Bilgisi Yok";
+                        const userEmail = req.profiles ? req.profiles.email : "Bilinmeyen Müşteri";
+                        const advice = req.analysis ? req.analysis.advice : "Nötr";
+                        const reason = req.analysis ? req.analysis.reason : "-";
+                        const color = req.analysis ? req.analysis.adviceColor : "gray";
+
+                        // Renk Belirleme yeri
+                        let badgeClass = "bg-gray-600";
+                        if(color === 'red') badgeClass = "bg-red-900 text-red-200 border border-red-700";
+                        if(color === 'green') badgeClass = "bg-green-900 text-green-200 border border-green-700";
+                        if(color === 'yellow') badgeClass = "bg-yellow-900 text-yellow-200 border border-yellow-700";
+
+                        const row = `
+                            <tr class="hover:bg-gray-700 transition">
+                                <td class="p-4 text-sm">
+                                    <div class="font-bold text-white">${productName}</div>
+                                    <div class="text-gray-400">${userEmail}</div>
+                                </td>
+                                <td class="p-4 text-gray-400">${req.original_price} ₺</td>
+                                <td class="p-4 font-bold text-xl text-white">${req.offered_price} ₺</td>
+                                <td class="p-4">
+                                    <span class="px-3 py-1 rounded text-xs font-bold ${badgeClass}">
+                                        ${advice}
+                                    </span>
+                                    <div class="text-xs text-gray-400 mt-1">${reason}</div>
+                                </td>
+                                <td class="p-4 flex gap-2 justify-center">
+                                    <button onclick="decide('${req.id}', 'onaylandi')" class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded">✓</button>
+                                    <button onclick="decide('${req.id}', 'reddedildi')" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">✗</button>
+                                </td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row;
+                    });
+                }
+                
+                updateCharts(requests);
+
+            } catch (error) {
+                console.error("HATA:", error);
+                document.getElementById('requestTable').innerHTML = `<tr><td colspan="5" class="p-4 text-center text-red-500">Hata: ${error.message}</td></tr>`;
+            }
+        }
+
+        function updateCharts(data) {
+            if(!data) return;
+            
+            // Grafik verilerini hazırla
+            let labels = data.map((d, i) => `Teklif ${i+1}`);
+            let offers = data.map(d => d.offered_price);
+            let originals = data.map(d => d.original_price);
+
+            const ctx2 = document.getElementById('moneyChart').getContext('2d');
+            if (moneyChartInstance) moneyChartInstance.destroy();
+
+            moneyChartInstance = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        { label: 'Orijinal', data: originals, backgroundColor: '#6366F1' },
+                        { label: 'Teklif', data: offers, backgroundColor: '#10B981' }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { color: 'white' } } } }
+            });
+            
+            const ctx1 = document.getElementById('statusChart').getContext('2d');
+            if (statusChartInstance) statusChartInstance.destroy();
+            statusChartInstance = new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Bekleyen'],
+                    datasets: [{ data: [data.length], backgroundColor: ['#F59E0B'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        async function decide(requestId, status) {
+            await fetch('/api/admin/bargain/approve', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ requestId, status })
+            });
+            refreshData();
+        }
+    </script>
+</body>
+</html>
