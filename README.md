@@ -1,3 +1,4 @@
+
 # 🛍️ HAN BUTİK - Akıllı E-Ticaret Sistemi
 
 ![Project Status](https://img.shields.io/badge/Durum-Geliştirme%20Aşamasında-orange?style=for-the-badge)
@@ -40,9 +41,10 @@ Bu proje, modern web geliştirme standartlarına uygun olarak aşağıdaki tekno
 
 ---
 
-## 📷 Ekran Görüntüleri
+## 📷 Sitenin Çalışma Şekli
 
-<img width="400" height="250" alt="Ekran görüntüsü 2025-12-11 004028" src="https://github.com/user-attachments/assets/a1f296d9-431f-4ac6-bb80-c1ec93173ef1" />
+![Pazarlık teklifi yapma](https://github.com/user-attachments/assets/a2ec079b-c5ac-4231-a72c-dc7374349ae1)
+
 <img width="400" height="250" alt="Ekran görüntüsü 2025-12-11 003934" src="https://github.com/user-attachments/assets/f7306a30-1a44-4f22-9258-471b149f1b6a" />
 <img width="400" height="250" alt="Ekran görüntüsü 2025-12-11 003913" src="https://github.com/user-attachments/assets/c81e891e-81a5-49b1-93fe-1f24249379a8" />
 <img width="400" height="250" alt="Ekran görüntüsü 2025-12-11 003853" src="https://github.com/user-attachments/assets/bb7ac008-a5e2-444e-b45b-fcf7004887a3" />
