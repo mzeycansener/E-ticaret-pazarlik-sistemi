@@ -1,12 +1,12 @@
 
-# 🛍️ HAN BUTİK - Akıllı E-Ticaret Sistemi
+# 🛍️ BİZE KAÇA OLUR - Akıllı E-Ticaret Sistemi
 
 ![Project Status](https://img.shields.io/badge/Durum-Geliştirme%20Aşamasında-orange?style=for-the-badge)
 ![License](https://img.shields.io/badge/Lisans-MIT-blue?style=for-the-badge)
 
 ## 🎯 Proje Hakkında
 
-**Han Butik**, Yönetim Bilişim Sistemleri (YBS) çalışmaları kapsamında geliştirilmiş; sadece ürün satmaya değil, **müşteri deneyimini oyunlaştırmaya (gamification)** odaklanan modern bir e-ticaret platformudur.
+**Bize Kaça Olur**, Yönetim Bilişim Sistemleri (YBS) çalışmaları kapsamında geliştirilmiş; sadece ürün satmaya değil, **müşteri deneyimini oyunlaştırmaya (gamification)** odaklanan modern bir e-ticaret platformudur.
 
 Sıradan e-ticaret sitelerinden farklı olarak; müşteriler harcama yaptıkça seviye atlar, özel indirimler kazanır ve satıcıyla **interaktif pazarlık** yapabilirler.
 
