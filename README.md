@@ -1,3 +1,8 @@
+<img width="1894" height="645" alt="Ekran görüntüsü 2025-12-11 004028" src="https://github.com/user-attachments/assets/510af802-e2ac-480f-b371-3bd896bfb9e3" />
+<img width="1268" height="722" alt="Ekran görüntüsü 2025-12-11 003934" src="https://github.com/user-attachments/assets/8f2cd7a6-557d-453e-84c4-2595160beb3c" />
+<img width="1555" height="709" alt="Ekran görüntüsü 2025-12-11 003913" src="https://github.com/user-attachments/assets/23e58cb3-1fde-4cbf-8d1b-9894f70eaa5b" />
+<img width="1544" height="817" alt="Ekran görüntüsü 2025-12-11 003904" src="https://github.com/user-attachments/assets/a62cda50-2cb3-429e-8b57-5af2e771c421" />
+<img width="1538" height="903" alt="Ekran görüntüsü 2025-12-11 003833" src="https://github.com/user-attachments/assets/85ec2408-6537-4717-93b5-59cbd043dec8" />
 # 🛍️ HAN BUTİK - Akıllı E-Ticaret ve Sadakat Sistemi
 
 > **Yönetim Bilişim Sistemleri (YBS)** kapsamındaki proje çalışmaları dahilinde geliştirilmiş; oyunlaştırma (gamification) ve karar destek mekanizmalarını içeren modern bir e-ticaret platformu.
