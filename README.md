@@ -56,7 +56,7 @@ Projeyi kendi bilgisayarınızda çalıştırmak için:
 
 1.  **Projeyi İndirin:**
     ```bash
-    git clone [https://github.com/KULLANICI_ADIN/han-butik.git](https://github.com/KULLANICI_ADIN/han-butik.git)
+    git clone [https://github.com/mzeycansener/E-ticaret-pazarlik-sistemi](https://github.com/mzeycansener/E-ticaret-pazarlik-sistemi)
     ```
 
 2.  **Paketleri Yükleyin:**
@@ -77,7 +77,7 @@ Projeyi kendi bilgisayarınızda çalıştırmak için:
 
 ## 👨‍💻 Geliştirici
 
-**[Adın Soyadın]** - Dokuz Eylül Üniversitesi, Yönetim Bilişim Sistemleri
+**[Mehmet Zeycan Şener]** - Dokuz Eylül Üniversitesi, Yönetim Bilişim Sistemleri
 
 * **LinkedIn:** [https://www.linkedin.com/in/mehmet-zeycan-%C5%9Fener-93087b296/]
 * **GitHub:** [https://github.com/mzeycansener]
