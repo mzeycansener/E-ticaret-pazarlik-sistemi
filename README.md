@@ -80,7 +80,7 @@ Projeyi kendi bilgisayarınızda çalıştırmak için:
 **[Adın Soyadın]** - Dokuz Eylül Üniversitesi, Yönetim Bilişim Sistemleri
 
 * **LinkedIn:** [https://www.linkedin.com/in/mehmet-zeycan-%C5%9Fener-93087b296/]
-* **GitHub:** [GitHub Profilin Buraya]
+* **GitHub:** [https://github.com/mzeycansener]
 
 ---
 
