@@ -77,12 +77,4 @@ Projeyi kendi bilgisayarınızda çalıştırmak için:
 
 ---
 
-## 👨‍💻 Geliştirici
-
-**[Mehmet Zeycan Şener]** - Dokuz Eylül Üniversitesi, Yönetim Bilişim Sistemleri
-
-* **LinkedIn:** [https://www.linkedin.com/in/mehmet-zeycan-%C5%9Fener-93087b296/]
-* **GitHub:** [https://github.com/mzeycansener]
-
----
 
